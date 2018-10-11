@@ -1,19 +1,19 @@
 $().ready(function() {
 
-    var url = "http://localhost:8080/Product/List"
+    var url = "http://localhost:8080/UserGet/List"
 
     $.getJSON(url)
         .then(function(jsonResponse)  {
                 console.log(jsonResponse);
-                render(jsonRepsonse);
+                render(jsonResponse);
         });
 
 });
 
 function render(jsonResponse)  {
     var tbody = $("#tbody");
-    var products = jsonRepsonse.data;
-    for(var product of products)  {
+    var usergets = jsonResponse.data;
+    for(var userget of usergets)  {
         var row = "<tr>";
         row += "<td>" + product.id + "</td>";
         row += "<td>" + product.name + "</td>";
