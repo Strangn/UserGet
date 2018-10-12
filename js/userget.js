@@ -1,25 +1,19 @@
-$().ready(function() {
+$().ready(() => {
 
-    var url = "http://localhost:8080/UserGet/List"
 
-    $.getJSON(url)
-        .then(function(jsonResponse)  {
-                console.log(jsonResponse);
-                render(jsonResponse);
+    $.getJSON("http://localhost:8080/Users/Get/2")
+        .then((resp) => {
+            console.log(resp);
+            render(resp.Data);
         });
 
-});
-
-function render(jsonResponse)  {
-    var tbody = $("#tbody");
-    var usergets = jsonResponse.data;
-    for(var userget of usergets)  {
-        var row = "<tr>";
-        row += "<td>" + product.id + "</td>";
-        row += "<td>" + product.name + "</td>";
-        row += "<td>" + product.price + "</td>";
-        row += "<td>" + product.vendor.name + "</td>";
-        row += "</tr>";
-        tbody.append(row);
-    }
-}
+    });
+function render(user)  {
+    $("#pid").val(user.Id);
+    $("#pname").val(user.FirstName + " " +user.LastName);
+    $("#pusername").val(user.UserName);
+    $("#pphone").val(user.PhoneNumber);
+    $("#pemail").val(user.Email);
+    $("#previewer").prop("checked", user.Reviewer);
+    $("#padmin").prop("checked", user.Admin);
+}   
